@@ -5,8 +5,46 @@ const {
   models: { User },
 } = require('../server/db');
 
+
+const users = [
+  {
+    username: "mark",
+    password: "mark_pw",
+    email: "mark@gmail.com",
+  },
+  {
+    username: "brian",
+    email: "brian@gmail.com",
+    password: "brian_pw",
+  },
+  {
+    username: "frank",
+    email: "frank@gmail.com",
+    password: "frank_pw",
+  },
+  {
+    username: "john",
+    email: "john@gmail.com",
+    password: "john_pw",
+  },
+  {
+    username: "erik",
+    email: "erik@gmail.com",
+    password: "erik_pw",
+  },
+];
+
+
+
+
 async function seed() {
   await db.sync({ forced: true });
+  
+  await Promise.all(
+    users.map((user) => {
+      return User.create(user);
+    })
+  );
 
   console.log('db synced!');
   console.log(`seeded successfully`);

@@ -18,7 +18,7 @@ export const editUser = createAsyncThunk(
     try {
       const { id, username, password, email } = info
       const { data } = await axios.put(
-        `http://localhost:8080/api/user/${id}`,
+        `http://192.168.1.7:8080/api/user/${id}`,
         { username, password, email }
       )
       return data

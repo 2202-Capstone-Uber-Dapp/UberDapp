@@ -14,32 +14,51 @@ const initialState = {
 
 // create thunk
 
+// export const me = createAsyncThunk("auth/me", async () => {
+//   // const token = window.localStorage.getItem(TOKEN);
+//   const token = await AsyncStorage.getItem(TOKEN);    
+//   console.log('HERE', token)
+//   if (token) {
+//     console.log("NOW HERE")
+//     const res = await axios.get("http://localhost:8080/auth/me", {
+//       headers: {
+//         authorization: token,
+//       },
+//     });
+//     console.log('RES DATA', res.data)
+//     return res.data;
+//   }
+// });
+
+
 export const me = createAsyncThunk("auth/me", async () => {
   // const token = window.localStorage.getItem(TOKEN);
-  const token = await AsyncStorage.getItem(TOKEN);    
-  console.log('HERE', token)
+  const token = await AsyncStorage.getItem(TOKEN)
+  console.log("HERE", token)
   if (token) {
     console.log("NOW HERE")
-    const res = await axios.get("http://localhost:8080/auth/me", {
+    const res = await axios.get("http://192.168.1.7:8080/auth/me", {
       headers: {
         authorization: token,
       },
-    });
-    console.log('RES DATA', res.data)
-    return res.data;
+    })
+    console.log("RES DATA", res.data)
+    return res.data
   }
-});
+})
+
+
 
 export const register = createAsyncThunk(
   "auth/register",
   async (formInfo, { dispatch, rejectWithValue }) => {
     try {
       const { username, password, email, formName } = formInfo;
-      const res = await axios.post(`http://localhost:8080/auth/${formName}`, {
+      const res = await axios.post(`http://192.168.1.7:8080/auth/${formName}`, {
         username,
         password,
         email,
-      });
+      })
       // window.localStorage.setItem(TOKEN, res.data.token);
       await AsyncStorage.setItem(TOKEN, res.data.token);
       dispatch(me());
@@ -49,26 +68,48 @@ export const register = createAsyncThunk(
     }
   }
 );
+// IP FOR MY PC ==> 192.168.1.7
 
 export const authenticate = createAsyncThunk(
   "auth/authenticate",
   async (formInfo, { dispatch, rejectWithValue }) => {
     try {
-      const { username, password, formName } = formInfo;
-      const res = await axios.post(`http://localhost:8080/auth/${formName}`, {
+      const { username, password, formName } = formInfo
+      console.log("form INFO", formInfo)
+      const res = await axios.post(`http://192.168.1.7:8080/auth/${formName}`, {
         username,
         password,
-      });
-      console.log("token is", res.data.token);
+      })
+      console.log("token is", res.data.token)
       // window.localStorage.setItem(TOKEN, res.data.token);
-      await AsyncStorage.setItem(TOKEN, res.data.token);
-      dispatch(me());
+      await AsyncStorage.setItem(TOKEN, res.data.token)
+      dispatch(me())
     } catch (error) {
-      console.error(error);
-      return rejectWithValue(error);
+      console.error(error)
+      return rejectWithValue(error)
     }
   }
-);
+)
+// export const authenticate = createAsyncThunk(
+//   "auth/authenticate",
+//   async (formInfo, { dispatch, rejectWithValue }) => {
+//     try {
+//       const { username, password, formName } = formInfo;
+//       console.log("form INFO", formInfo)
+//       const res = await axios.post(`http://localhost:8080/auth/${formName}`, {
+//         username,
+//         password,
+//       });
+//       console.log("token is", res.data.token);
+//       // window.localStorage.setItem(TOKEN, res.data.token);
+//       await AsyncStorage.setItem(TOKEN, res.data.token);
+//       dispatch(me());
+//     } catch (error) {
+//       console.error(error);
+//       return rejectWithValue(error);
+//     }
+//   }
+// );
 
 export const logout = createAsyncThunk("auth/logout", async () => {
   // window.localStorage.removeItem(TOKEN);

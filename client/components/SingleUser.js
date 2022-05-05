@@ -6,7 +6,7 @@ import { fetchUser } from "../redux/user"
 
 export default function SingleUser({ navigation, route }) {
   const dispatch = useDispatch()
-  console.log("user is", route.params.user)
+  // console.log("user is", route.params.user)
   const user = route.params.user
 
   return (

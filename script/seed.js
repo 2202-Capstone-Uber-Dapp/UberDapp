@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User },
+  models: { User, Ride },
 } = require('../server/db');
 
 
@@ -45,6 +45,20 @@ async function seed() {
       return User.create(user);
     })
   );
+
+  const rider1 = await User.create({
+    username: "testingRide",
+    email: "rider@gmail.com",
+    password: "rider_pw",
+  })
+  const driver1 = await User.create({
+    username: "testingdriver",
+    email: "driver@gmail.com",
+    password: "driver_pw",
+  })
+ const ride1 = await Ride.create()
+    await ride1.setDriver(driver1)
+    await ride1.setRider(rider1)
 
   console.log('db synced!');
   console.log(`seeded successfully`);

@@ -41,7 +41,7 @@ function Login({ navigation }) {
         secureTextEntry={true}
       />
       <Button
-        color="white"
+        color="purple"
         borderRadius={10}
         title="Log in"
         onPress={handleSubmit}
@@ -50,7 +50,7 @@ function Login({ navigation }) {
       </Button>
       <Text style={styles.text}>Don't have an account?</Text>
       <Button
-        color="white"
+        color="purple"
         title="Sign up"
         onPress={() => navigation.navigate("Signup")}
       />
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // backgroundColor: 'linear-gradient(#FD297B, #FF5864, #FF655B)',
-    backgroundColor: "#FD3A73",
+    backgroundColor: "#000000",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -83,6 +83,6 @@ const styles = StyleSheet.create({
   //   color: 'white',
   //   backgroundColor: 'white',
   // }
-});
+})
 
 export default Login;

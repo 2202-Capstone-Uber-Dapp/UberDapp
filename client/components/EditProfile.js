@@ -13,13 +13,11 @@ import { editUser } from "../redux/user"
 
 export default function EditProfile({ route, navigation }) {
     const dispatch = useDispatch();
-    console.log('PARAMMMS', route.params.user)
     const user = route.params.user;
     // const { user } = useSelector((state) => state.user)
   const [email, setEmail] = useState(user.email);
   const [password, setPassword] = useState(user.password);
     const [username, setUsername] = useState(user.username);
-    console.log('USERRR', user)
 
   const handleSubmit = () => {
     dispatch(

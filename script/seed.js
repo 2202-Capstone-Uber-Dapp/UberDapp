@@ -38,7 +38,7 @@ const users = [
 
 
 async function seed() {
-  await db.sync({ forced: true });
+  await db.sync({ force: true });
   
   await Promise.all(
     users.map((user) => {

@@ -1,5 +1,6 @@
 import axios from "axios"
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import { API_ROUTE } from "@env"
 
 export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
   try {

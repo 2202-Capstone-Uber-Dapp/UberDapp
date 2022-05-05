@@ -54,11 +54,11 @@ export const register = createAsyncThunk(
   async (formInfo, { dispatch, rejectWithValue }) => {
     try {
       const { username, password, email, formName } = formInfo;
-      const res = await axios.post(`http://localhost:8080/auth/${formName}`, {
+      const res = await axios.post(`http://192.168.1.7:8080/auth/${formName}`, {
         username,
         password,
         email,
-      });
+      })
       // window.localStorage.setItem(TOKEN, res.data.token);
       await AsyncStorage.setItem(TOKEN, res.data.token);
       dispatch(me());

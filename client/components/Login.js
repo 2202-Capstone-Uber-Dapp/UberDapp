@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { authenticate } from "../redux/auth";
+import React, { useState } from "react"
+import { useDispatch } from "react-redux"
+import { authenticate } from "../redux/auth"
 import {
   View,
   Text,
@@ -8,19 +8,20 @@ import {
   TextInput,
   Button,
   StyleSheet,
-} from "react-native";
+  Pressable,
+} from "react-native"
 // import { NativeScreenNavigationContainer } from 'react-native-screens';
 
 function Login({ navigation }) {
-  const dispatch = useDispatch();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const dispatch = useDispatch()
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const formName = "login";
-    dispatch(authenticate({ username, password, formName }));
-  };
+    e.preventDefault()
+    const formName = "login"
+    dispatch(authenticate({ username, password, formName }))
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -40,22 +41,34 @@ function Login({ navigation }) {
         autoCapitalize="none"
         secureTextEntry={true}
       />
-      <Button
-        color="purple"
-        borderRadius={10}
-        title="Log in"
+
+      <Pressable
+        style={({ pressed }) => [
+          {
+            backgroundColor: pressed ? "#7356BF" : "#7356BF",
+          },
+          styles.login,
+        ]}
         onPress={handleSubmit}
       >
-        Log in
-      </Button>
+        <Text style={styles.text}>Login</Text>
+      </Pressable>
+
       <Text style={styles.text}>Don't have an account?</Text>
-      <Button
-        color="purple"
-        title="Sign up"
+
+      <Pressable
+        style={({ pressed }) => [
+          {
+            backgroundColor: pressed ? "#7356BF" : "#7356BF",
+          },
+          styles.login,
+        ]}
         onPress={() => navigation.navigate("Signup")}
-      />
+      >
+        <Text style={styles.text}>Sign Up</Text>
+      </Pressable>
     </SafeAreaView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -68,7 +81,9 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "white",
-    marginTop: 30,
+    fontWeight: "bold",
+    fontSize: 15,
+    margin: 10,
   },
   formInput: {
     backgroundColor: "white",
@@ -78,6 +93,15 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 8,
   },
+  login: {
+    borderRadius: 60,
+    // borderColor: "white",
+    // borderWidth: 1,
+    // padding: 10,
+    paddingLeft: 15,
+    paddingRight: 15,
+    margin: 10,
+  },
   // button: {
   //   borderRadius: 10,
   //   color: 'white',
@@ -85,4 +109,4 @@ const styles = StyleSheet.create({
   // }
 })
 
-export default Login;
+export default Login

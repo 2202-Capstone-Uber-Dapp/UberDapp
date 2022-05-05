@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { register } from "../redux/auth";
+import React, { useState } from "react"
+import { useDispatch } from "react-redux"
+import { register } from "../redux/auth"
 import {
   View,
   Text,
@@ -8,20 +8,20 @@ import {
   TextInput,
   Button,
   StyleSheet,
-} from "react-native";
+  Pressable,
+} from "react-native"
 
 export default function SignUp({ navigation }) {
-
-  const dispatch = useDispatch();
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const dispatch = useDispatch()
+  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const formName = "signup";
-    dispatch(register({ username, email, password, formName }));
-  };
+    e.preventDefault()
+    const formName = "signup"
+    dispatch(register({ username, email, password, formName }))
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -47,20 +47,32 @@ export default function SignUp({ navigation }) {
         onChangeText={setPassword}
         autoCapitalize="none"
       />
-      <Button color="white" title="Create Account" onPress={handleSubmit} />
+      <Pressable
+        style={({ pressed }) => [
+          {
+            backgroundColor: pressed ? "#7356BF" : "#7356BF",
+          },
+          styles.button,
+        ]}
+        onPress={handleSubmit}
+      >
+        <Text style={styles.text}>Create Account</Text>
+      </Pressable>
     </SafeAreaView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FD3A73",
+    backgroundColor: "#000000",
     alignItems: "center",
     justifyContent: "center",
   },
   text: {
     color: "white",
+    fontWeight: "bold",
+    fontSize: 15,
     margin: 10,
   },
   formInput: {
@@ -71,9 +83,18 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 8,
   },
+  button: {
+    borderRadius: 60,
+    // borderColor: "white",
+    // borderWidth: 1,
+    // padding: 10,
+    paddingLeft: 15,
+    paddingRight: 15,
+    margin: 10,
+  },
   // button: {
   //   borderRadius: 10,
   //   color: 'white',
   //   backgroundColor: 'white'
   // }
-});
+})

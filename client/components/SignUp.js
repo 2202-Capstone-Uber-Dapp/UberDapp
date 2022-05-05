@@ -50,7 +50,7 @@ export default function SignUp({ navigation }) {
       <Pressable
         style={({ pressed }) => [
           {
-            backgroundColor: pressed ? "#7356BF" : "#7356BF",
+            backgroundColor: pressed ? "#55408E" : "#7356BF",
           },
           styles.button,
         ]}

@@ -45,7 +45,7 @@ function Login({ navigation }) {
       <Pressable
         style={({ pressed }) => [
           {
-            backgroundColor: pressed ? "#7356BF" : "#7356BF",
+            backgroundColor: pressed ? "#55408E" : "#7356BF",
           },
           styles.login,
         ]}
@@ -59,7 +59,7 @@ function Login({ navigation }) {
       <Pressable
         style={({ pressed }) => [
           {
-            backgroundColor: pressed ? "#7356BF" : "#7356BF",
+            backgroundColor: pressed ? "#55408E" : "#7356BF",
           },
           styles.login,
         ]}

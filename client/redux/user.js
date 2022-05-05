@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 
 export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
   try {
-    const { data } = await axios.get(`http://localhost:8080/api/users`)
+    const { data } = await axios.get(`${API_ROUTE}/api/users`)
     console.log("Data From Thunk", data)
     return data
   } catch (error) {
@@ -11,25 +11,22 @@ export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
   }
 })
 
-
 export const editUser = createAsyncThunk(
   "profile/editProfile",
   async (info) => {
     try {
       const { id, username, password, email } = info
-      const { data } = await axios.put(
-        `http://192.168.1.7:8080/api/user/${id}`,
-        { username, password, email }
-      )
+      const { data } = await axios.put(`${API_ROUTE}/api/user/${id}`, {
+        username,
+        password,
+        email,
+      })
       return data
     } catch (err) {
       console.error(err)
     }
   }
 )
-
-
-
 
 export const userSlice = createSlice({
   name: "user",
